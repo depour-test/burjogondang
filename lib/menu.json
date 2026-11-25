@@ -1,0 +1,276 @@
+[
+  [
+    "Nasi Ayam Geprek",
+    15000,
+    "Nasi",
+    "ayam-geprek",
+    "Ayam crispy dengan sambal, disajikan bersama nasi hangat."
+  ],
+  [
+    "Nasi Goreng Spesial",
+    18000,
+    "Nasi",
+    "nasi-goreng-spesial",
+    "Nasi goreng berbumbu gurih dengan pelengkap spesial."
+  ],
+  [
+    "Indomie Rebus Tante",
+    7000,
+    "Indomie",
+    "mie-rebus",
+    "Indomie kuah hangat, tanpa tambahan telur."
+  ],
+  [
+    "Nasi Ayam SS",
+    15000,
+    "Nasi",
+    "ayam-ss",
+    "Nasi hangat dengan ayam berbumbu SS."
+  ],
+  [
+    "Nasi Ayam Bali Crispy",
+    15000,
+    "Nasi"
+  ],
+  [
+    "Indomie Goreng Telur",
+    11000,
+    "Indomie"
+  ],
+  [
+    "Es Gooday Frizz",
+    5000,
+    "Minuman"
+  ],
+  [
+    "Nasi Ayam Bali Suwir",
+    15000,
+    "Nasi"
+  ],
+  [
+    "Nasi Ayam Bali Telur",
+    19000,
+    "Nasi"
+  ],
+  [
+    "Nasi Ayam Balap Crispy",
+    15000,
+    "Nasi"
+  ],
+  [
+    "Nasi Ayam Balap Suwir",
+    15000,
+    "Nasi"
+  ],
+  [
+    "Nasi Ayam Balap Telur",
+    19000,
+    "Nasi"
+  ],
+  [
+    "Nasi Ayam Orak Arik",
+    15000,
+    "Nasi"
+  ],
+  [
+    "Nasi Ayam Orak Arik Telur",
+    19000,
+    "Nasi"
+  ],
+  [
+    "Nasi Ayam SS Telur",
+    19000,
+    "Nasi"
+  ],
+  [
+    "Nasi Ayam Opor",
+    15000,
+    "Nasi"
+  ],
+  [
+    "Nasi Ayam Opor Telur",
+    19000,
+    "Nasi"
+  ],
+  [
+    "Nasi Omlet",
+    12000,
+    "Nasi"
+  ],
+  [
+    "Nasi Omlet Indomie",
+    15000,
+    "Nasi"
+  ],
+  [
+    "Nasi Gila",
+    15000,
+    "Nasi"
+  ],
+  [
+    "Nasi Telur",
+    10000,
+    "Nasi"
+  ],
+  [
+    "Nasi Telur Orak Arik",
+    11000,
+    "Nasi"
+  ],
+  [
+    "Nasi Telur Geprek",
+    12000,
+    "Nasi"
+  ],
+  [
+    "Nasi Sarden",
+    14000,
+    "Nasi"
+  ],
+  [
+    "Nasi Sarden Telur",
+    18000,
+    "Nasi"
+  ],
+  [
+    "Nasi Goreng",
+    12000,
+    "Nasi",
+    "nasi-goreng-telur"
+  ],
+  [
+    "Nasi Goreng Ayam",
+    16000,
+    "Nasi"
+  ],
+  [
+    "Nasi Magelangan",
+    12000,
+    "Nasi"
+  ],
+  [
+    "Nasi Magelangan Indomie",
+    15000,
+    "Nasi"
+  ],
+  [
+    "Nasi Magelangan Ayam",
+    16000,
+    "Nasi"
+  ],
+  [
+    "Nasi Ayam Geprek Telur",
+    19000,
+    "Nasi"
+  ],
+  [
+    "Indomie Rebus Telur",
+    11000,
+    "Indomie"
+  ],
+  [
+    "Indomie Goreng Tante",
+    7000,
+    "Indomie"
+  ],
+  [
+    "Mie Dok-Dok",
+    12000,
+    "Indomie"
+  ],
+  [
+    "Mie Tek-Tek",
+    12000,
+    "Indomie"
+  ],
+  [
+    "Es Nutri Sari",
+    4000,
+    "Minuman"
+  ],
+  [
+    "Es Teh",
+    3000,
+    "Minuman"
+  ],
+  [
+    "Es Susi",
+    7000,
+    "Minuman"
+  ],
+  [
+    "Es Extra Joss",
+    4000,
+    "Minuman"
+  ],
+  [
+    "Es Kuku Bima",
+    4000,
+    "Minuman"
+  ],
+  [
+    "Es Joshua",
+    8000,
+    "Minuman"
+  ],
+  [
+    "Es Kusu",
+    8000,
+    "Minuman"
+  ],
+  [
+    "Es Soda Susu",
+    12000,
+    "Minuman"
+  ],
+  [
+    "Es Gooday",
+    4000,
+    "Minuman"
+  ],
+  [
+    "Es Kopi Hitam",
+    4000,
+    "Minuman"
+  ],
+  [
+    "Es Teh Tarik",
+    5000,
+    "Minuman"
+  ],
+  [
+    "Es Hilo",
+    5000,
+    "Minuman"
+  ],
+  [
+    "Es Cappuccino",
+    5000,
+    "Minuman"
+  ],
+  [
+    "Susu Jahe",
+    4000,
+    "Minuman"
+  ],
+  [
+    "Telur",
+    4000,
+    "Topping"
+  ],
+  [
+    "Kornet",
+    4000,
+    "Topping"
+  ],
+  [
+    "Sosis",
+    2000,
+    "Topping"
+  ],
+  [
+    "Bakso",
+    2000,
+    "Topping"
+  ]
+]
