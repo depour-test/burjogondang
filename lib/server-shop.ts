@@ -1,5 +1,5 @@
 import { mapLink, validPoint, type DeliveryPoint } from './delivery'
-import { env } from 'cloudflare:workers'
+import { getRuntimeEnv } from './runtime-env'
 import { generateMerchantQris, inspectMerchantQris } from './merchant-qris'
 import { categories, defaultProducts, defaultSettings, fulfillmentNames, priceOf, rupiah } from './shop'
 import type { Product, Promo, Settings, Quote, Line, Category, QrisProvider } from './shop'
@@ -16,8 +16,9 @@ export const money = (v: unknown, max = 5_000_000) => {
   return v
 }
 export const db = () => {
-  if (!env.DB) throw new ShopError('Penyimpanan sementara tidak tersedia.', 503)
-  return env.DB
+  const database = getRuntimeEnv().DB
+  if (!database) throw new ShopError('Penyimpanan sementara tidak tersedia.', 503)
+  return database
 }
 export async function getShop() {
   const row = await db().prepare("SELECT value, revision FROM shop_config WHERE key = 'store'").first<{value: string; revision: number}>()
@@ -38,6 +39,7 @@ export async function saveShop(shop: Shop, revision: number) {
   return revision+1
 }
 export function readyMethods(settings: Settings) {
+  const env = getRuntimeEnv()
   const qrisProvider = settings.qrisProvider
   return {
     whatsapp: /^62[1-9]\d{7,13}$/.test(settings.whatsapp), qrisProvider,
@@ -172,6 +174,7 @@ export function presentOrder(order: Order, whatsapp: string) {
 type Gateway = {status_code?: string; order_id?: string; transaction_id?: string; transaction_status?: string; gross_amount?: string; currency?: string; payment_type?: string; actions?: {name: string;url: string}[]}
 const gatewayBase = (sandbox: boolean) => sandbox ? 'https://api.sandbox.midtrans.com' : 'https://api.midtrans.com'
 async function gateway(path: string, sandbox: boolean, payload?: object) {
+  const env = getRuntimeEnv()
   const key = env.MIDTRANS_SERVER_KEY
   if (!key || sandbox !== (env.MIDTRANS_MODE !== 'production')) return null
   const response = await fetch(gatewayBase(sandbox)+path, {

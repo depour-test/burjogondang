@@ -1,4 +1,4 @@
-import { env } from 'cloudflare:workers'
+import { getRuntimeEnv } from '../../../lib/runtime-env'
 import { clean, confirmMerchantPayment, createOrder, db, findOrder, getShop, isMerchantQris, orderDetails, presentOrder, publicShop, quoteOrder, readyMethods, saveShop, ShopError, signature, syncPayment, validateProduct, validatePromo, validateQrisSettings, validateSettings } from '../../../lib/server-shop'
 import type { Order } from '../../../lib/server-shop'
 
@@ -37,7 +37,8 @@ async function readBody(request: Request) {
 }
 
 function isAdmin(request: Request) {
-  if (import.meta.env.DEV && env.LOCAL_ADMIN === 'yes' && ['terminal.local','127.0.0.1','localhost'].includes(new URL(request.url).hostname)) return true
+  const env = getRuntimeEnv()
+  if (process.env.NODE_ENV !== 'production' && env.LOCAL_ADMIN === 'yes' && ['terminal.local','127.0.0.1','localhost'].includes(new URL(request.url).hostname)) return true
   if (env.SITES_TRUSTED_INGRESS !== 'yes') return false
   const siteId = request.headers.get('oai-authenticated-user-id')
   const email = request.headers.get('oai-authenticated-user-email')?.trim().toLowerCase()
@@ -47,6 +48,7 @@ function isAdmin(request: Request) {
 const steps: Record<string,string[]> = {new:['accepted','canceled'],accepted:['preparing','canceled'],preparing:['ready','canceled'],ready:['done','canceled'],done:[],canceled:[]}
 
 async function adminRoute(request: Request, url: URL, path: string[]) {
+  const env = getRuntimeEnv()
   const allowed = isAdmin(request), section = path[1], write = request.method === 'POST'
   if (section === 'access' && !write) return json({allowed})
   if (!allowed) throw new ShopError('Masuk dengan akun admin untuk membuka panel.',403)
@@ -136,7 +138,7 @@ async function adminRoute(request: Request, url: URL, path: string[]) {
 }
 
 async function midtransNotice(request: Request) {
-  const key = env.MIDTRANS_SERVER_KEY
+  const key = getRuntimeEnv().MIDTRANS_SERVER_KEY
   if (!key) throw new ShopError('QRIS belum terhubung.',503)
   const body = await readBody(request), id = clean(body.order_id,30)
   if (!idFormat.test(id)) return json({ok:true})
@@ -159,7 +161,7 @@ async function handle(request: Request) {
     if (write && request.headers.get('origin') !== url.origin) throw new ShopError('Permintaan ditolak.',403)
     if (section === 'admin') return await adminRoute(request,url,path)
     if (section === 'media' && !write && imageId.test(path[1] || '')) {
-      const photo = await env.BUCKET?.get(path[1])
+      const photo = await getRuntimeEnv().BUCKET?.get(path[1])
       if (!photo) throw new ShopError('Foto tidak ditemukan.',404)
       const headers = new Headers({'X-Content-Type-Options':'nosniff'})
       photo.writeHttpMetadata(headers)

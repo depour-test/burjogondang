@@ -23,7 +23,7 @@ const statement=(q,args=[])=>({
 })
 globalThis.qrisTestEnv={DB:{prepare:statement},ADMIN_EMAIL:'owner@example.test',MIDTRANS_SERVER_KEY:'test-key'}
 const definition={write:false,bundle:true,format:'esm',platform:'node',define:{'import.meta.env.DEV':'false'}}
-const envPlugin={name:'env',setup(b){b.onResolve({filter:/^cloudflare:workers$/},()=>({path:'env',namespace:'test'}));b.onLoad({filter:/.*/,namespace:'test'},()=>({contents:'export const env=globalThis.qrisTestEnv'}))}}
+const envPlugin={name:'env',setup(b){b.onResolve({filter:/^(cloudflare:workers|@libsql\/client.*)$/},args=>({path:args.path,namespace:'test'}));b.onLoad({filter:/.*/,namespace:'test'},args=>({contents:args.path.startsWith('@libsql')?'export function createClient(){return null}':'export const env=globalThis.qrisTestEnv'}))}}
 async function module(path,plugins=[]){
  const bundle=await build({...definition,entryPoints:[path],plugins})
  return import('data:text/javascript;base64,'+Buffer.from(bundle.outputFiles[0].contents).toString('base64'))
